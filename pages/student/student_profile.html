@@ -9,19 +9,18 @@
 </head>
 <body class="bg-white flex flex-row">
     
-    <nav class="w-fit flex flex-col gap-1">
-        <section class="border-b-1 p-1">
-            <button onclick="test()" class="pl-2">
-                <i class="bi bi-layout-sidebar-inset p-1 cursor-pointer hover:bg-gray-200"></i>
+    <aside class="w-fit flex flex-col gap-1">
+        <section onclick="test()" class="border-b-1 p-1 hover:bg-gray-200">
+            <button class="pl-2">
+                <i class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
                 <i hidden class="bi bi-layout-sidebar-inset-reverse"></i>
             </button>
-            
         </section>
 
         <nav id="sideNavBar" class="p-2 w-fit flex flex-col gap-1">
             
         </nav>
-    </nav>
+    </aside>
     <main class="border-l-1 p-4 h-screen grow overflow-y-auto">
         <h1 class="text-2xl font-bold mb-6">Student Profile</h1>
         <form class="max-w-2xl space-y-6">
@@ -112,6 +111,8 @@
             </div>
         </form>
     </main>
+
+
     <script type="module">
         import {navBarButton} from '../../js/components/navButton.js';
         
@@ -127,7 +128,7 @@
             ${navBarButton(`<i class="bi bi-suitcase-lg-fill cursor-pointer"></i>`, "Job search", "../job_search.html", false)}
             ${navBarButton(`<i class="bi bi-person-badge cursor-pointer"></i>`, "Student Profile", "./student_profile.html", true)}
             ${navBarButton(`<i class="bi bi-bell-fill cursor-pointer"></i>`, "Notifications", "../notifications.html", false)}
-            ${navBarButton(`<i class="bi bi-gear-fill cursor-pointer"></i>`, "Settings!!!", "../settings.html", false)}
+            ${navBarButton(`<i class="bi bi-gear-fill cursor-pointer"></i>`, "Settings", "../settings.html", false)}
         `;
     </script>
 </body>
