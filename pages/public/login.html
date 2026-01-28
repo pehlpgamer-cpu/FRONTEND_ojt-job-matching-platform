@@ -11,24 +11,24 @@
     
     <main class="w-screen h-screen flex justify-center items-center">
         
-        <form class="flex flex-col border p-4 rounded-lg" method="post">
+        <form id="loginForm" class="flex flex-col border p-4 rounded-lg">
             <span>
                 <i class="bi bi-person-circle"></i>
                 <label>Email</label>
             </span>
-            <input required class="border p-1.5 rounded-md" type="text" name="emailInput"/>
+            <input required class="border p-1.5 rounded-md" type="text" id="emailInput" name="emailInput"/>
             
             <span>
                 <i class="bi bi-lock-fill"></i>
                 <label>Password</label>
             </span>
             <span class="flex">
-                <input maxlength="64" minlength="8" required class="grow border p-1.5 rounded-l-md" type="text" name="passwordInput"/>
-                <button onclick="" class="p-1.5 border border-l-0" type="button">view</button>
+                <input required class="grow border p-1.5 rounded-l-md" type="password" id="passwordInput" name="passwordInput"/>
+                <button onclick="" class="p-1.5 border border-l-0 rounded-r-md" type="button">view</button>
             </span>
             
 
-            <button class="mt-2 pt-3 pb-3 border rounded-md hover:bg-black hover:text-white hover:scale-105 duration-150" type="submit">
+            <button id="btnLogin" class="mt-2 pt-3 pb-3 border rounded-md hover:bg-black hover:text-white hover:scale-105 duration-150" type="submit">
                 Login
             </button>
             <a href="./register.html" class="text-blue-700 underline self-center">create an account?</a> 
@@ -39,38 +39,37 @@
     <script>
         const baseUrl = "http://127.0.0.1:8000/api"; 
 
-        document.getElementById("btnLogin").addEventListener("click", async () => {
-        const emailInput    = document.getElementById("emailInput").value;
-        const passwordInput = document.getElementById("passwordInput").value;
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault(); // Prevent default form submission
+            
+            const email = document.getElementById("emailInput").value;
+            const password = document.getElementById("passwordInput").value;
 
-        try {
-            const response = await fetch(`${baseUrl}/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-                body: JSON.stringify({ emailInput, passwordInput })
-            });
+            try {
+                const response = await fetch(`${baseUrl}/login`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
 
-            if (!response.ok) {
-                const error = await response.json();
-                alert("Login failed: " + (error.message || ""));
-                return;
+                if (!response.ok) {
+                    const error = await response.json();
+                    alert("Login failed: " + (error.message || ""));
+                    return;
+                }
+
+                const data = await response.json();
+                const token = data.token;
+
+                sessionStorage.setItem("token", token);
+                alert("Logged in!");
+
+            } catch (err) {
+                console.error(err);
             }
-
-            const data = await response.json();
-            const token = data.token;
-
-            // Save token safely (e.g., sessionStorage)
-            sessionStorage.setItem("token", token);
-            alert("Logged in!");
-
-        } catch (err) {
-            console.error(err);
-        }
         });
-
-
     </script>
 
 
