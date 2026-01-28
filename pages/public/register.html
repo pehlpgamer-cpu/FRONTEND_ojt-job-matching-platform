@@ -72,9 +72,9 @@
         const numberPwdRequirement = document.getElementById('numberPwdRequirement');
         const uppercasePwdRequirement = document.getElementById('uppercasePwdRequirement');
         const lowercasePwdRequirement = document.getElementById('lowercasePwdRequirement');
-        const securePatternPwdRequirement = document.getElementById('securePatternPwdRequirement');
+       
         
-        const nonSecurePwdPatterns = ['12345678', 'abcdefgh'];
+        
 
         function togglePasswordVisibility() {
             if (passwordInput.getAttribute('type') == 'password') passwordInput.setAttribute('type', 'text');
@@ -130,9 +130,7 @@
             lowercasePwdRequirement.classList.add('invalidPassword');
             lowercasePwdRequirement.classList.remove('validPassword');
             
-            securePatternPwdRequirement.classList.add('invalidPassword');
-            securePatternPwdRequirement.classList.remove('validPassword');
-
+            
             // Reset text content to show ✕ symbol
             MinCharsPwdRequirement.textContent = '✕ 8 chars minimum';
             MaxCharsPwdRequirement.textContent = '✕ 64 chars maximum';
@@ -140,7 +138,7 @@
             numberPwdRequirement.textContent = '✕ 1 number';
             uppercasePwdRequirement.textContent = '✕ 1 uppercase';
             lowercasePwdRequirement.textContent = '✕ 1 lowercase';
-            securePatternPwdRequirement.textContent = '✕ secure pattern';
+            
         }
 
         function validatePassword() {

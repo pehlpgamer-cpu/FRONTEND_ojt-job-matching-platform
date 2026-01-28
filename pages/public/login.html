@@ -14,16 +14,16 @@
         <form class="flex flex-col border p-4 rounded-lg" method="post">
             <span>
                 <i class="bi bi-person-circle"></i>
-                <label>Username</label>
+                <label>Email</label>
             </span>
-            <input required class="border p-1.5 rounded-md" type="text" name="username"/>
+            <input required class="border p-1.5 rounded-md" type="text" name="emailInput"/>
             
             <span>
                 <i class="bi bi-lock-fill"></i>
                 <label>Password</label>
             </span>
             <span class="flex">
-                <input maxlength="64" minlength="8" required class="grow border p-1.5 rounded-l-md" type="text" name="password"/>
+                <input maxlength="64" minlength="8" required class="grow border p-1.5 rounded-l-md" type="text" name="passwordInput"/>
                 <button onclick="" class="p-1.5 border border-l-0" type="button">view</button>
             </span>
             
@@ -37,7 +37,39 @@
     </main>
 
     <script>
-        
+        const baseUrl = "http://127.0.0.1:8000/api"; 
+
+        document.getElementById("btnLogin").addEventListener("click", async () => {
+        const emailInput    = document.getElementById("emailInput").value;
+        const passwordInput = document.getElementById("passwordInput").value;
+
+        try {
+            const response = await fetch(`${baseUrl}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+                body: JSON.stringify({ emailInput, passwordInput })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                alert("Login failed: " + (error.message || ""));
+                return;
+            }
+
+            const data = await response.json();
+            const token = data.token;
+
+            // Save token safely (e.g., sessionStorage)
+            sessionStorage.setItem("token", token);
+            alert("Logged in!");
+
+        } catch (err) {
+            console.error(err);
+        }
+        });
+
 
     </script>
 
