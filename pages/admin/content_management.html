@@ -4,8 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    
+<body class="bg-white flex flex-row">
+     <aside id="navBarContainer" class="w-fit flex flex-col gap-1">
+        <section onclick="toggleCollapseNavBar()" class="border-b-1 p-1 hover:bg-gray-200 cursor-pointer">
+            <button onclick="toggleCollapseNavBar()" class="pl-2 cursor-pointer">
+                <i onclick="toggleCollapseNavBar()" class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
+                <!-- <i hidden class="bi bi-layout-sidebar-inset-reverse"></i> -->
+            </button>
+        </section>
+
+        <nav id="sideNavBar" class="p-2 w-fit flex flex-col gap-1">
+            
+        </nav>
+    </aside>
+
+    <main class="flex flex-col border-l-1 h-screen grow overflow-y-auto">
+        
+    </main>
 </body>
+<script type="module">
+    // IMPORTS
+    import {navBarButton} from '../../js/components/navBarButton.js';
+    import {adminNavBtns} from '../../js/components/navBtnGroups.js';
+
+    // HTML TAGS    
+    const sideNavBar = document.getElementById('sideNavBar');
+    const userContainer = document.getElementById('userContainer');
+    const navBarContainer = document.getElementById('navBarContainer');
+
+    // Expose to global scope for inline onclick handlers
+    window.toggleCollapseNavBar = toggleCollapseNavBar;
+   
+    function loadNavBtns() {
+        sideNavBar.innerHTML = adminNavBtns(0, navBarButton);
+    }
+    loadNavBtns();
+    
+    
+    function toggleCollapseNavBar() {
+        const isCollapsed = localStorage.getItem('navBarCollapsed') === "true";
+        localStorage.setItem("navBarCollapsed", !isCollapsed);
+
+        loadNavBtns();
+    }
+</script>
 </html>

@@ -13,10 +13,10 @@
 </head>
 <body class="bg-white flex flex-row">
      <aside id="navBarContainer" class="w-fit flex flex-col gap-1">
-        <section class="border-b-1 p-1 hover:bg-gray-200">
-            <button class="pl-2">
+        <section onclick="toggleCollapseNavBar()" class="border-b-1 p-1 hover:bg-gray-200 cursor-pointer">
+            <button onclick="toggleCollapseNavBar()" class="pl-2 cursor-pointer">
                 <i onclick="toggleCollapseNavBar()" class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
-                <i hidden class="bi bi-layout-sidebar-inset-reverse"></i>
+                <!-- <i hidden class="bi bi-layout-sidebar-inset-reverse"></i> -->
             </button>
         </section>
 
