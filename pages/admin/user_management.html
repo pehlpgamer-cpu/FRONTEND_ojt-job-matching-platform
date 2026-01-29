@@ -11,7 +11,10 @@
 
     <aside id="navBarContainer" class="w-fit flex flex-col gap-1">
         <section class="border-b-1 p-1 hover:bg-gray-200">
-            
+            <button class="pl-2">
+                <i onclick="toggleCollapseNavBar()" class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
+                <i hidden class="bi bi-layout-sidebar-inset-reverse"></i>
+            </button>
         </section>
 
         <nav id="sideNavBar" class="p-2 w-fit flex flex-col gap-1">
@@ -20,15 +23,19 @@
     </aside>
 
     <main class="flex flex-col border-l-1 h-screen grow overflow-y-auto">
+        
         <form class="border-b p-2 flex flex-row gap-1">
             <div class="flex flex-col grow">
                 <span>
-                    
+                    <i class="bi bi-envelope-fill"></i>
                     <label>email</label>
                 </span>
                 <input type="text" class="p-1 border rounded-md"/>
 
-                <label>Role</label>
+                <span>
+                    <i class="bi bi-person-badge-fill"></i>
+                    <label>Role</label>
+                </span>
                 <select class="p-1 border rounded-lg">
                     <option>Admin</option>
                     <option>Student</option>
@@ -45,24 +52,24 @@
             <table class="w-full">
                 <thead>
                     <tr class="">
-                        <th class="border p-1">Id</th>
-                        <th class="border p-1">Email</th>
-                        <th class="border p-1">Role</th>
-                        <th class="border p-1">Verified</th>
-                        <th class="border p-1">Created_at</th>
-                        <th class="border p-1">Updated_at</th>
-                        <th class="border p-1">Edit</th>
+                        <th class="border">Id</th>
+                        <th class="border">Email</th>
+                        <th class="border">Role</th>
+                        <th class="border">Verified</th>
+                        <th class="border">Created_at</th>
+                        <th class="border">Updated_at</th>
+                        <th class="border">Edit</th>
                     </tr>
                 </thead>
                 <tbody id="userTableBodyContainer">
                     <tr class="text-center"> 
-                        <td class="border p-1">102</td>
-                        <td class="border p-1">sample@gmail.com</td>
-                        <td class="border p-1">admin</td>
-                        <td class="border p-1">Yes</td>
-                        <td class="border p-1">2026-01-11</td>
-                        <td class="border p-1">2026-01-19</td>
-                        <td class="border p-1"><button class="p-1 border rounded-md m-1">edit</button></td>
+                        <td class="border">102</td>
+                        <td class="border">sample@gmail.com</td>
+                        <td class="border">admin</td>
+                        <td class="border">Yes</td>
+                        <td class="border">2026-01-11</td>
+                        <td class="border">2026-01-19</td>
+                        <td class="border"><button class="p-1 border rounded-md m-1 w-full">edit</button></td>
                     </tr>
                 </tbody>
             </table>
