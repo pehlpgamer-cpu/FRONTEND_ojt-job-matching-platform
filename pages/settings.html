@@ -8,14 +8,47 @@
     <title>Document</title>
 </head>
 <body>
-    <main>
-        <button class="border bg-red-500 text-white rounded-md p-1 cursor-pointer hover:scale-105 duration-150 ">
-            Logout
-        </button>
+    <body class="bg-white flex flex-row">
+
+    <aside class="w-fit flex flex-col gap-1">
+        <section class="border-b-1 p-1 hover:bg-gray-200">
+            <button class="pl-2">
+                <i class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
+                <i hidden class="bi bi-layout-sidebar-inset-reverse"></i>
+            </button>
+        </section>
+
+        <nav id="sideNavBar" class="p-2 w-fit flex flex-col gap-1">
+            
+        </nav>
+    </aside>
+
+    <main class="border-l-1 p-4 h-screen grow overflow-y-auto">
+        <section id="userContainer">
+            <button class="border bg-red-500 text-white rounded-md p-1 cursor-pointer hover:scale-105 duration-150 ">
+                Logout
+            </button>
+        </section>
     </main>
     
 </body>
 
-<script>
-</script>
+<script type="module">
+        import {navBarButton} from '../../js/components/navButton.js';
+        
+        const sideNavBar = document.getElementById('sideNavBar');
+        let navBarCollapse = false;
+
+        function toggleNavBarCollapse() {
+            navBarCollapse = !navBarCollapse;
+        }
+
+        // Create all navigation items
+        sideNavBar.innerHTML = `
+            ${navBarButton(`<i class="bi bi-suitcase-lg-fill cursor-pointer"></i>`, "Job search", "../job_search.html", false)}
+            ${navBarButton(`<i class="bi bi-person-badge cursor-pointer"></i>`, "Student Profile", "./student_profile.html", false)}
+            ${navBarButton(`<i class="bi bi-bell-fill cursor-pointer"></i>`, "Notifications", "../notifications.html", false)}
+            ${navBarButton(`<i class="bi bi-gear-fill cursor-pointer"></i>`, "Settings", "../settings.html", true)}
+        `;
+    </script>
 </html>

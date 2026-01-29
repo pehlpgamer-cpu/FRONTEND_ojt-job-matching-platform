@@ -11,8 +11,8 @@
 
     <aside class="w-fit flex flex-col gap-1">
         <section class="border-b-1 p-1 hover:bg-gray-200">
-            <button class="pl-2">
-                <i class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
+            <button  class="pl-2">
+                <i onclick="toggleCollapseNavBar()" class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
                 <i hidden class="bi bi-layout-sidebar-inset-reverse"></i>
             </button>
         </section>
@@ -22,8 +22,29 @@
         </nav>
     </aside>
 
-    <main class="border-l-1 p-4 h-screen grow overflow-y-auto">
-        <section id="UserContainer">
+    <main class="border-l-1 h-screen grow overflow-y-auto">
+        <form class="border-b p-2 flex flex-row gap-1">
+            <div class="flex flex-col grow">
+                <span>
+                    
+                    <label>email</label>
+                </span>
+                <input type="text" class="p-1 border rounded-md"/>
+
+                <label>Role</label>
+                <select class="p-1 border rounded-lg">
+                    <option>Admin</option>
+                    <option>Student</option>
+                    <option>Company</option>
+                    <option>School Coordinator</option>
+                </select>
+
+
+            </div>
+            
+            <button class="border rounded-lg p-1"><i class="bi bi-search"></i></button>
+        </form>
+        <section id="userContainer">
 
         </section>
     </main>
@@ -32,19 +53,62 @@
 
 <script type="module">
 
+    // HTML TAGS    
+    const sideNavBar = document.getElementById('sideNavBar');
+    const userContainer = document.getElementById('userContainer');
+    
+    // IMPORTS
     import {navBarButton} from '../../js/components/navButton.js';
 
     
-        
-    const sideNavBar = document.getElementById('sideNavBar');
+
+    // Global Data Collections
+    let userList = [];
+        // SAMPLE DATA
+        const userListSample = [
+            {
+                username: "admin",
+                email: "admin@gmail.com",
+                created_at: "2026-01-17"
+            },
+            {
+                username: "Bro",
+                email: "student1@gmail.com",
+                created_at: "2026-01-02"
+            },
+            {
+                username: "Bob",
+                email: "company@gmail.com",
+                created_at: "2026-01-13"
+            },
+            {
+                username: "Chad",
+                email: "student2@gmail.com",
+                created_at: "2026-01-27"
+            }
+        ]
+    
+    // STATES
+    //let navBarCollapsed = localStorage.getItem('navBarCollapsed');
     
     // Create all navigation items
     sideNavBar.innerHTML = `
-        ${navBarButton(`<i class="bi bi-pie-chart-fill"></i>`, "Dashboard", "../dashboard.html", false)}
+        ${navBarButton(`<i class="bi bi-pie-chart-fill"></i>`, "Dashboard", "./dashboard.html")}
         ${navBarButton(`<i class="bi bi-people-fill"></i>`, "Users", "./user_management.html", true)}
-        ${navBarButton(`<i class="bi bi-database-fill"></i>`, "Contents", "../notifications.html", false)}
-        ${navBarButton(`<i class="bi bi-file-earmark-text-fill"></i>`, "Audit Trail", "./audit_trail.html", false)}
+        ${navBarButton(`<i class="bi bi-database-fill"></i>`, "Contents", "../notifications.html")}
+        ${navBarButton(`<i class="bi bi-file-earmark-text-fill"></i>`, "Audit Trail", "./audit_trail.html")}
+        ${navBarButton(`<i class="bi bi-bell-fill cursor-pointer"></i>`, "Notifications", "../notifications.html")}
+        ${navBarButton(`<i class="bi bi-gear-fill"></i>`, "Settings", "../settings.html")}
     `;
+
+    function toggleCollapseNavBar() {
+
+        alert("dfkjhsbjhb");
+        if (localStorage.getItem('navBarCollapsed') == "false") localStorage.setItem("navBarCollapsed", true);
+        else localStorage.setItem("navBarCollapsed", "true");
+
+
+    }
 
     function fetchUsers()
     {
@@ -56,9 +120,28 @@
             headers: {
             "Authorization": `Bearer ${token}`,
             "Accept": "application/json"
-        }}).then(res => res.json()).then(data => console.log("User data:", data)).catch(err => console.error(err));
+        }})
+        .then(res => res.json())
+        .then(data => {
+            console.log("User data:", data);
+            userList = data;
+        })
+        .catch(err => console.error(err));
+        console.log(userList);
     }
 
+    function displayUsers() {
+        let userCardElements = '';
+        for (const user of userList)
+        {
+            userCardElements += 
+            `
+            <article
+            `
+        }
+        userContainer.innerHTML = userCardElements;
+    }
+    
     fetchUsers();
 
 </script>
