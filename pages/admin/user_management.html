@@ -56,7 +56,7 @@
     // HTML TAGS    
     const sideNavBar = document.getElementById('sideNavBar');
     const userContainer = document.getElementById('userContainer');
-    
+
     // IMPORTS
     import {navBarButton} from '../../js/components/navButton.js';
 
@@ -92,23 +92,32 @@
     //let navBarCollapsed = localStorage.getItem('navBarCollapsed');
     
     // Create all navigation items
-    sideNavBar.innerHTML = `
-        ${navBarButton(`<i class="bi bi-pie-chart-fill"></i>`, "Dashboard", "./dashboard.html")}
-        ${navBarButton(`<i class="bi bi-people-fill"></i>`, "Users", "./user_management.html", true)}
-        ${navBarButton(`<i class="bi bi-database-fill"></i>`, "Contents", "../notifications.html")}
-        ${navBarButton(`<i class="bi bi-file-earmark-text-fill"></i>`, "Audit Trail", "./audit_trail.html")}
-        ${navBarButton(`<i class="bi bi-bell-fill cursor-pointer"></i>`, "Notifications", "../notifications.html")}
-        ${navBarButton(`<i class="bi bi-gear-fill"></i>`, "Settings", "../settings.html")}
-    `;
+
+    function loadNavBtns()
+    {
+        sideNavBar.innerHTML = `
+            ${navBarButton(`<i class="bi bi-pie-chart-fill"></i>`, "Dashboard", "./dashboard.html")}
+            ${navBarButton(`<i class="bi bi-people-fill"></i>`, "Users", "./user_management.html", true)}
+            ${navBarButton(`<i class="bi bi-database-fill"></i>`, "Contents", "../notifications.html")}
+            ${navBarButton(`<i class="bi bi-file-earmark-text-fill"></i>`, "Audit Trail", "./audit_trail.html")}
+            ${navBarButton(`<i class="bi bi-bell-fill cursor-pointer"></i>`, "Notifications", "../notifications.html")}
+            ${navBarButton(`<i class="bi bi-gear-fill"></i>`, "Settings", "../settings.html")}
+        `;
+    }
+    loadNavBtns();
+    
 
     function toggleCollapseNavBar() {
 
         alert("dfkjhsbjhb");
-        if (localStorage.getItem('navBarCollapsed') == "false") localStorage.setItem("navBarCollapsed", true);
-        else localStorage.setItem("navBarCollapsed", "true");
+        if (localStorage.getItem('navBarCollapsed')) localStorage.setItem("navBarCollapsed", true);
+        else localStorage.setItem("navBarCollapsed", true);
 
+        loadNavBtns();
 
     }
+    // Expose to global scope for inline onclick handlers
+    window.toggleCollapseNavBar = toggleCollapseNavBar;
 
     function fetchUsers()
     {
