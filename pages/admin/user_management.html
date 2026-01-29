@@ -87,8 +87,8 @@
 <script type="module">
 
     // IMPORTS
-    
-    import {navBarButton} from '../../js/components/navButton.js';
+    import {navBarButton} from '../../js/components/navBarButton.js';
+    import {adminNavBtns} from '../../js/components/navBtnGroups.js';
 
     // HTML TAGS    
     const sideNavBar = document.getElementById('sideNavBar');
@@ -131,21 +131,11 @@
     window.toggleCollapseNavBar = toggleCollapseNavBar;
    
     function loadNavBtns() {
-        sideNavBar.innerHTML = `
-            ${navBarButton(`<i class="bi bi-pie-chart-fill"></i>`, "Dashboard", "./dashboard.html")}
-            ${navBarButton(`<i class="bi bi-people-fill"></i>`, "Users", "./user_management.html", true)}
-            ${navBarButton(`<i class="bi bi-database-fill"></i>`, "Contents", "../notifications.html")}
-            ${navBarButton(`<i class="bi bi-file-earmark-text-fill"></i>`, "Audit Trail", "./audit_trail.html")}
-            ${navBarButton(`<i class="bi bi-bell-fill cursor-pointer"></i>`, "Notifications", "../notifications.html")}
-            ${navBarButton(`<i class="bi bi-gear-fill"></i>`, "Settings", "../settings.html")}
-        `;
+        sideNavBar.innerHTML = adminNavBtns(1, navBarButton);
     }
     loadNavBtns();
     
     
-
-    
-
     function toggleCollapseNavBar() {
         const isCollapsed = localStorage.getItem('navBarCollapsed') === "true";
         localStorage.setItem("navBarCollapsed", !isCollapsed);

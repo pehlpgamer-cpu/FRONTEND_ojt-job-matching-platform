@@ -1,6 +1,9 @@
 /* p-1 = 0.25rem */
 /* p-4 = 1rem */
 
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 .centerForm {
     /* background: #d8ffab; */
