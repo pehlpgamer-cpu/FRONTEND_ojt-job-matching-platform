@@ -11,7 +11,7 @@
 
     <aside id="navBarContainer" class="w-fit flex flex-col gap-1">
         <section class="border-b-1 p-1 hover:bg-gray-200">
-            <button  class="pl-2">
+            <button class="pl-2">
                 <i onclick="toggleCollapseNavBar()" class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
                 <i hidden class="bi bi-layout-sidebar-inset-reverse"></i>
             </button>
@@ -22,7 +22,7 @@
         </nav>
     </aside>
 
-    <main class="border-l-1 h-screen grow overflow-y-auto">
+    <main class="flex flex-col border-l-1 h-screen grow overflow-y-auto">
         <form class="border-b p-2 flex flex-row gap-1">
             <div class="flex flex-col grow">
                 <span>
@@ -44,8 +44,41 @@
             
             <button class="border rounded-lg p-1"><i class="bi bi-search"></i></button>
         </form>
-        <section id="userContainer">
-
+        <section class="grow">
+            <table class="w-full">
+                <thead>
+                    <tr class="">
+                        <th class="border p-1">Id</th>
+                        <th class="border p-1">Email</th>
+                        <th class="border p-1">Role</th>
+                        <th class="border p-1">Verified</th>
+                        <th class="border p-1">Created_at</th>
+                        <th class="border p-1">Updated_at</th>
+                        <th class="border p-1">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center"> 
+                        <td class="border p-1">102</td>
+                        <td class="border p-1">sample@gmail.com</td>
+                        <td class="border p-1">admin</td>
+                        <td class="border p-1">Yes</td>
+                        <td class="border p-1">2026-01-11</td>
+                        <td class="border p-1">2026-01-19</td>
+                        <td class="border p-1"><button class="p-1 border rounded-md m-1">edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="p-1.5 flex flex-row w-full border-t">
+            <form>
+                <button type="submit" class="border p-1 rounded-l-md">Prev</button>
+                <button type="submit" class="border p-1 rounded-r-md">Next</button>
+                <input type="number" class="border p-1 rounded-l-md w-18"/>
+                <button type="submit" class="border p-1 rounded-r-md">View page</button>
+            </form>
+            <div class="grow"></div>
+            <label class="p-1">1/99</label>
         </section>
     </main>
 
