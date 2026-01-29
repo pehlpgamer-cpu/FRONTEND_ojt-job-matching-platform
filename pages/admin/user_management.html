@@ -9,7 +9,7 @@
 </head>
 <body class="bg-white flex flex-row">
 
-    <aside class="w-fit flex flex-col gap-1">
+    <aside id="navBarContainer" class="w-fit flex flex-col gap-1">
         <section class="border-b-1 p-1 hover:bg-gray-200">
             <button  class="pl-2">
                 <i onclick="toggleCollapseNavBar()" class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
@@ -53,14 +53,18 @@
 
 <script type="module">
 
+    // IMPORTS
+    
+    import {navBarButton} from '../../js/components/navButton.js';
+
     // HTML TAGS    
     const sideNavBar = document.getElementById('sideNavBar');
     const userContainer = document.getElementById('userContainer');
-
-    // IMPORTS
-    import {navBarButton} from '../../js/components/navButton.js';
+    const navBarContainer = document.getElementById('navBarContainer');
 
     
+
+    //navBarContainer.innerHTML = navBarLayout();
 
     // Global Data Collections
     let userList = [];
@@ -88,14 +92,12 @@
             }
         ]
     
-    // STATES
-    //let navBarCollapsed = localStorage.getItem('navBarCollapsed');
+   
     
     // Expose to global scope for inline onclick handlers
     window.toggleCollapseNavBar = toggleCollapseNavBar;
    
-    function loadNavBtns()
-    {
+    function loadNavBtns() {
         sideNavBar.innerHTML = `
             ${navBarButton(`<i class="bi bi-pie-chart-fill"></i>`, "Dashboard", "./dashboard.html")}
             ${navBarButton(`<i class="bi bi-people-fill"></i>`, "Users", "./user_management.html", true)}
@@ -107,10 +109,14 @@
     }
     loadNavBtns();
     
+    
+
+    
 
     function toggleCollapseNavBar() {
         const isCollapsed = localStorage.getItem('navBarCollapsed') === "true";
         localStorage.setItem("navBarCollapsed", !isCollapsed);
+
         loadNavBtns();
     }
 

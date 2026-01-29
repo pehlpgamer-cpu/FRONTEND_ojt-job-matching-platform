@@ -65,11 +65,23 @@
 
                 sessionStorage.setItem("token", token);
                 alert("Logged in!");
+                redirectUser();
 
             } catch (err) {
                 console.error(err);
             }
         });
+
+
+        function redirectUser()
+        {
+            // if admin
+            // else if student
+            // else if company
+            // else = 404 page
+
+            window.location.assign("../admin/user_management.html"); // dashboard WIP
+        }
     </script>
 
 
