@@ -91,8 +91,9 @@
     // STATES
     //let navBarCollapsed = localStorage.getItem('navBarCollapsed');
     
-    // Create all navigation items
-
+    // Expose to global scope for inline onclick handlers
+    window.toggleCollapseNavBar = toggleCollapseNavBar;
+   
     function loadNavBtns()
     {
         sideNavBar.innerHTML = `
@@ -108,17 +109,14 @@
     
 
     function toggleCollapseNavBar() {
-
-        alert("dfkjhsbjhb");
-        if (localStorage.getItem('navBarCollapsed')) localStorage.setItem("navBarCollapsed", true);
-        else localStorage.setItem("navBarCollapsed", true);
-
+        const isCollapsed = localStorage.getItem('navBarCollapsed') === "true";
+        localStorage.setItem("navBarCollapsed", !isCollapsed);
         loadNavBtns();
-
     }
+
     // Expose to global scope for inline onclick handlers
     window.toggleCollapseNavBar = toggleCollapseNavBar;
-
+   
     function fetchUsers()
     {
         const token = sessionStorage.getItem("token");
