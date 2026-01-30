@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Document</title>
+    <title>User management</title>
 </head>
 <body class="bg-white flex flex-row">
 
@@ -48,7 +48,7 @@
             
             <button class="border rounded-lg p-1"><i class="bi bi-search"></i></button>
         </form>
-        <section class="grow">
+        <section class="grow p-1">
             <table class="w-full">
                 <thead>
                     <tr class="">
@@ -63,13 +63,19 @@
                 </thead>
                 <tbody id="userTableBodyContainer">
                     <tr class="text-center"> 
-                        <td class="border">102</td>
+                        <td class="border p-1">102</td>
                         <td class="border">sample@gmail.com</td>
-                        <td class="border">admin</td>
+                        <td class="border">
+                            <select class="">
+                                <option selected>admin</option>
+                                <option value="student">student</option>
+                                <option value="company">company</option>
+                            </select>
+                        </td>
                         <td class="border">Yes</td>
                         <td class="border">2026-01-11</td>
                         <td class="border">2026-01-19</td>
-                        <td class="border"><button class="p-1 border rounded-md m-1 w-full">edit</button></td>
+                        <td onclick="alert()" class="border hover:bg-gray-200"><i onclick="alert()" class="bi bi-pencil-square"></i></td>
                     </tr>
                 </tbody>
             </table>
