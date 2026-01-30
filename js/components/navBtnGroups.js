@@ -16,7 +16,7 @@ export function adminNavBtns(highlightIndex, navButton)
         { 
             icon: `<i class="bi bi-database-fill"></i>`, 
             label: "Contents", 
-            url: "../notifications.html" 
+            url: "./content_management.html" 
         },
         { 
             icon: `<i class="bi bi-file-earmark-text-fill"></i>`, 

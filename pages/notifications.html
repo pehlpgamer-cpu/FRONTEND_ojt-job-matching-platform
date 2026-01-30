@@ -35,13 +35,54 @@
     const userContainer = document.getElementById('userContainer');
     const navBarContainer = document.getElementById('navBarContainer');
 
+    // STATES
+    let userRole = 'admin'; // Temporary
+
+    
     // Expose to global scope for inline onclick handlers
     window.toggleCollapseNavBar = toggleCollapseNavBar;
    
+    function AdminNavBtns() {
+        const btns = 
+        navBarButton('<i class="bi bi-pie-chart-fill"></i>', 'Dashboard', './admin/dashboard.html') +
+        navBarButton('<i class="bi bi-people-fill"></i>', 'Users', './admin/user_management.html') +
+        navBarButton('<i class="bi bi-database-fill"></i>', 'Content', './admin/content_management.html') +
+        navBarButton('<i class="bi bi-file-earmark-text-fill"></i>', 'Audit Trail', './admin/audit_trail.html') +
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Notifications', './notifications.html', true) +
+        navBarButton('<i class="bi bi-gear-fill"></i>', 'Settings', './settings.html');
+
+        return btns;
+    }
+
+    function StudentNavBtns() {
+        const btns = 
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Jobs search', './student/job_search.html') +
+        navBarButton('<i class="bi bi-person-badge cursor-pointer"></i>', 'Profile', './student/student_profile.html') +
+        navBarButton('<i class="bi bi-file-earmark-person-fill"></i>', 'Resume', './student/resume_management.html') +
+        navBarButton('<i class="bi bi-file-earmark-pdf"></i>', 'Applications', './student/') +
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Settings', './notifications.html', true) +
+        navBarButton('<i class="bi bi-gear-fill"></i>', 'Notifications', './settings.html');
+
+        return btns;
+    }
+
+    function CompanyNavBtns() {
+        const btns = 
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Dashboard', './admin/dashboard.html') +
+        navBarButton('', '', '') +
+        navBarButton('', '', '') +
+        navBarButton('', '', '') +
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Settings', './notifications.html', true) +
+        navBarButton('<i class="bi bi-gear-fill"></i>', 'Notifications', './settings.html');
+
+        return btns;
+    }
+
     function loadNavBtns() {
-        sideNavBar.innerHTML = adminNavBtns(-1, navBarButton)
-        + navBarButton('<i class="bi bi-bell-fill"></i>', 'Settings', './notifications.html', true)
-        + navBarButton('<i class="bi bi-gear-fill"></i>', 'Notifications', './settings.html');
+        if (userRole === "admin") sideNavBar.innerHTML = AdminNavBtns();
+        else if (userRole === "student") sideNavBar.innerHTML = StudentNavBtns();
+        else if (userRole === "company") sideNavBar.innerHTML = CompanyNavBtns();
+        
     }
     loadNavBtns();
     
