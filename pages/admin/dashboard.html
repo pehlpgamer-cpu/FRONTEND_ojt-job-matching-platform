@@ -37,9 +37,12 @@
 
     // Expose to global scope for inline onclick handlers
     window.toggleCollapseNavBar = toggleCollapseNavBar;
-   
+
     function loadNavBtns() {
-        sideNavBar.innerHTML = adminNavBtns(0, navBarButton);
+        sideNavBar.innerHTML =
+        adminNavBtns(0, navBarButton) +
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Notifications', './notifications.html') +
+        navBarButton('<i class="bi bi-gear-fill"></i>', 'Settings', './settings.html');
     }
     loadNavBtns();
     

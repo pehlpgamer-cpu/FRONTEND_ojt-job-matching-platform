@@ -22,17 +22,8 @@ export function adminNavBtns(highlightIndex, navButton)
             icon: `<i class="bi bi-file-earmark-text-fill"></i>`, 
             label: "Audit Trail", 
             url: "./audit_trail.html" 
-        },
-        { 
-            icon: `<i class="bi bi-bell-fill cursor-pointer"></i>`, 
-            label: "Notifications", 
-            url: "../notifications.html" 
-        },
-        { 
-            icon: `<i class="bi bi-gear-fill"></i>`, 
-            label: "Settings", 
-            url: "../settings.html" 
         }
+        
     ];
 
     let navBtnElements = '';
@@ -57,7 +48,7 @@ export function studentNavBtns(highlightIndex, navButton)
         },
         { 
             icon: `<i class="bi bi-person-badge cursor-pointer"></i>`, 
-            label: "Student Profile", 
+            label: "Profile", 
             url: "./student_profile.html" 
         },
         { 
@@ -67,19 +58,10 @@ export function studentNavBtns(highlightIndex, navButton)
         },
         { 
             icon: `<i class="bi bi-file-earmark-pdf"></i>`, 
-            label: "OJT Applications", 
+            label: "Applications", 
             url: "../system/404.html" 
-        },
-        { 
-            icon: `<i class="bi bi-bell-fill cursor-pointer"></i>`, 
-            label: "Notifications", 
-            url: "../notifications.html" 
-        },
-        { 
-            icon: `<i class="bi bi-gear-fill"></i>`, 
-            label: "Settings", 
-            url: "../settings.html" 
         }
+        
     ];
 
     let navBtnElements = '';
@@ -97,34 +79,24 @@ export function companyNavBtns(highlightIndex, navButton)
 {
     const navBtnParams = [
         { 
-            icon: `<i class="bi bi-pie-chart-fill"></i>`, 
-            label: "Dashboard", 
-            url: "./dashboard.html" 
+            icon: ``, 
+            label: "", 
+            url: "" 
         },
         { 
-            icon: `<i class="bi bi-people-fill"></i>`, 
-            label: "Users", 
-            url: "./user_management.html" 
+            icon: ``, 
+            label: "", 
+            url: "" 
         },
         { 
-            icon: `<i class="bi bi-database-fill"></i>`, 
-            label: "Contents", 
-            url: "../notifications.html" 
+            icon: ``, 
+            label: "", 
+            url: "" 
         },
         { 
-            icon: `<i class="bi bi-file-earmark-text-fill"></i>`, 
-            label: "Audit Trail", 
-            url: "./audit_trail.html" 
-        },
-        { 
-            icon: `<i class="bi bi-bell-fill cursor-pointer"></i>`, 
-            label: "Notifications", 
-            url: "../notifications.html" 
-        },
-        { 
-            icon: `<i class="bi bi-gear-fill"></i>`, 
-            label: "Settings", 
-            url: "../settings.html" 
+            icon: ``, 
+            label: "", 
+            url: "" 
         }
     ];
 

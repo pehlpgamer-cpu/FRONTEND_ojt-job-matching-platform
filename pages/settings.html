@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Document</title>
+    <title>Settings</title>
 </head>
-<body>
-    <body class="bg-white flex flex-row">
-
-    <aside class="w-fit flex flex-col gap-1">
-        <section class="border-b-1 p-1 hover:bg-gray-200">
-            <button class="pl-2">
-                <i class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
-                <i hidden class="bi bi-layout-sidebar-inset-reverse"></i>
+<body class="bg-white flex flex-row">
+    <aside id="navBarContainer" class="w-fit flex flex-col gap-1">
+        <section onclick="toggleCollapseNavBar()" class="border-b-1 p-1 hover:bg-gray-200 cursor-pointer">
+            <button onclick="toggleCollapseNavBar()" class="pl-2 cursor-pointer">
+                <i onclick="toggleCollapseNavBar()" class="bi bi-layout-sidebar-inset p-1 cursor-pointer"></i>
+                <!-- <i hidden class="bi bi-layout-sidebar-inset-reverse"></i> -->
             </button>
         </section>
 
@@ -23,32 +21,83 @@
         </nav>
     </aside>
 
-    <main class="border-l-1 p-4 h-screen grow overflow-y-auto">
-        <section id="userContainer">
-            <button class="border bg-red-500 text-white rounded-md p-1 cursor-pointer hover:scale-105 duration-150 ">
-                Logout
-            </button>
-        </section>
-    </main>
-    
-</body>
-
-<script type="module">
-        import {navBarButton} from '../../js/components/navButton.js';
+    <main class="flex flex-col border-l-1 h-screen grow overflow-y-auto">
         
-        const sideNavBar = document.getElementById('sideNavBar');
-        let navBarCollapse = false;
+    </main>
+</body>
+<script type="module">
+    // IMPORTS
+    import {navBarButton} from '../../js/components/navBarButton.js';
 
-        function toggleNavBarCollapse() {
-            navBarCollapse = !navBarCollapse;
-        }
+    // HTML TAGS    
+    const sideNavBar = document.getElementById('sideNavBar');
+    const userContainer = document.getElementById('userContainer');
+    const navBarContainer = document.getElementById('navBarContainer');
 
-        // Create all navigation items
-        sideNavBar.innerHTML = `
-            ${navBarButton(`<i class="bi bi-suitcase-lg-fill cursor-pointer"></i>`, "Job search", "../job_search.html", false)}
-            ${navBarButton(`<i class="bi bi-person-badge cursor-pointer"></i>`, "Student Profile", "./student_profile.html", false)}
-            ${navBarButton(`<i class="bi bi-bell-fill cursor-pointer"></i>`, "Notifications", "../notifications.html", false)}
-            ${navBarButton(`<i class="bi bi-gear-fill cursor-pointer"></i>`, "Settings", "../settings.html", true)}
-        `;
-    </script>
+    // STATES
+    let userRole = 'admin'; // Temporary
+
+    // Expose to global scope for inline onclick handlers
+    window.toggleCollapseNavBar = toggleCollapseNavBar;
+
+    function AdminNavBtns() {
+        const btns = 
+        navBarButton('<i class="bi bi-pie-chart-fill"></i>', 'Dashboard', './admin/dashboard.html') +
+        navBarButton('<i class="bi bi-people-fill"></i>', 'Users', './admin/user_management.html') +
+        navBarButton('<i class="bi bi-database-fill"></i>', 'Content', './admin/content_management.html') +
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Notifications', './notifications.html') +
+        navBarButton('<i class="bi bi-gear-fill"></i>', 'Settings', './settings.html', true);
+
+        return btns;
+    }
+
+    function StudentNavBtns() {
+        const btns = 
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Jobs search', './student/job_search.html') +
+        navBarButton('<i class="bi bi-person-badge cursor-pointer"></i>', 'Profile', './student/student_profile.html') +
+        navBarButton('<i class="bi bi-file-earmark-person-fill"></i>', 'Resume', './student/resume_management.html') +
+        navBarButton('<i class="bi bi-file-earmark-pdf"></i>', 'Applications', './student/') +
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Settings', './notifications.html') +
+        navBarButton('<i class="bi bi-gear-fill"></i>', 'Notifications', './settings.html', true);
+
+        return btns;
+    }
+
+    function CompanyNavBtns() {
+        const btns = 
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Dashboard', './admin/dashboard.html') +
+        navBarButton('', '', '') +
+        navBarButton('', '', '') +
+        navBarButton('', '', '') +
+        navBarButton('<i class="bi bi-bell-fill"></i>', 'Settings', './notifications.html') +
+        navBarButton('<i class="bi bi-gear-fill"></i>', 'Notifications', './settings.html', true);
+
+        return btns;
+    }
+
+    function loadNavBtns() {
+        if (userRole === "admin") sideNavBar.innerHTML = AdminNavBtns();
+        else if (userRole === "student") sideNavBar.innerHTML = StudentNavBtns();
+        else if (userRole === "company") sideNavBar.innerHTML = CompanyNavBtns();
+        
+    }
+    loadNavBtns();
+    
+    
+    function toggleCollapseNavBar() {
+        const isCollapsed = localStorage.getItem('navBarCollapsed') === "true";
+        localStorage.setItem("navBarCollapsed", !isCollapsed);
+
+        loadNavBtns();
+    }
+
+    
+    function setUserRole()
+    {
+        // WIP...
+    }
+
+
+
+</script>
 </html>

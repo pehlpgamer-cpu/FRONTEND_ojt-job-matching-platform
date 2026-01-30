@@ -22,7 +22,7 @@
     </aside>
 
     <main class="flex flex-col border-l-1 h-screen grow overflow-y-auto">
-        <h1 class="text-4xl p-72">W I P . . .</h1>
+        
     </main>
 </body>
 <script type="module">
@@ -39,7 +39,9 @@
     window.toggleCollapseNavBar = toggleCollapseNavBar;
    
     function loadNavBtns() {
-        sideNavBar.innerHTML = adminNavBtns(0, navBarButton);
+        sideNavBar.innerHTML = adminNavBtns(-1, navBarButton)
+        + navBarButton('<i class="bi bi-bell-fill"></i>', 'Settings', './notifications.html', true)
+        + navBarButton('<i class="bi bi-gear-fill"></i>', 'Notifications', './settings.html');
     }
     loadNavBtns();
     

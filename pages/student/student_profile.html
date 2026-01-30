@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-white flex flex-row">
-     <aside id="navBarContainer" class="w-fit flex flex-col gap-1">
+    <aside id="navBarContainer" class="w-fit flex flex-col gap-1">
         <section onclick="toggleCollapseNavBar()" class="border-b-1 p-1 hover:bg-gray-200">
             <button onclick="toggleCollapseNavBar()" class="pl-2 cursor-pointer">
                 <i onclick="toggleCollapseNavBar()" class="bi bi-layout-sidebar-inset p-1"></i> 
@@ -54,8 +54,8 @@
             </section>
 
             <!-- Academic Information -->
-            <section class="space-y-4">
-                <h2 class="text-lg font-semibold border-b pb-2">Academic Information</h2>
+            <section class="space-y-4 flex">
+                <h2 class="text-lg font-semibold border-b pb-2 grow">Academic Information</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium mb-1">Student ID</label>
@@ -128,7 +128,7 @@
 
     // Expose to global scope for inline onclick handlers
     window.toggleCollapseNavBar = toggleCollapseNavBar;
-   
+
     function loadNavBtns() {
         sideNavBar.innerHTML = studentNavBtns(1, navBarButton);
     }
